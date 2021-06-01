@@ -1,0 +1,22 @@
+{
+  "name": "callback-prompts",
+  "version": "1.0.0",
+  "description": "a practice mini-sprint for async callbacks within ajax calls",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmchandler/async-callbacks.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "live-server ."
+  },
+  "author": "Tom Chandler",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "jquery": "^3.4.1",
+    "live-server": "^1.2.1",
+    "mocha": "^7.0.1",
+    "sinon": "^8.1.1"
+  }
+}
