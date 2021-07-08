@@ -74,21 +74,21 @@ HINT: What type of HTTP request should you be using to add an item to our Foods 
 ANOTHER HINT: What is the shape of the data that you're adding to the collection?
 */
 
-const addItem = (food) => {
+const addItem = (item) => {
   /* FILL_ME_IN */
   $.ajax({
     type: 'POST',
     url: "http://127.0.0.1:3000/foods",
     contentType: "application/json",
-    data: food,
+    data: item,
     success: addItemCallback,
     error: errorLogger 
   })
 };
 
-const addItemCallback = (data) => {
+const addItemCallback = (response) => {
   /* FILL_ME_IN */
-  console.log(JSON.parse(data));
+  console.log(JSON.parse(response));
 };
 
 /* HINT: It looks like you're trying to update an existing item in our Foods collection - what type of request could be used to achieve this? */
@@ -96,20 +96,38 @@ const addItemCallback = (data) => {
 /* ========== updateItem ========== */
 const updateItem = (id, item) => {
   /* FILL_ME_IN */
+  $.ajax({
+    type: 'PUT',
+    url: `http://127.0.0.1:3000/foods/${id}`,
+    contentType: "application/json",
+    data: item,
+    success: updateItemCallback,
+    error: errorLogger 
+  })
 };
 
-const updateItemCallback = (data) => {
+/* updateItemCallback() should extract the message from the server's response object */
+const updateItemCallback = (response) => {
   /* FILL_ME_IN */
-  console.log(JSON.parse(data));
+  console.log(JSON.parse(response).data.success);
 };
 
 /* ========== deleteItem ========== */
 const deleteItem = (id) => {
   /* FILL_ME_IN */
+  $.ajax({
+    type: 'DELETE',
+    url: `http://127.0.0.1:3000/foods`,
+    contentType: "application/json",
+    data: { id },
+    success: deleteItemCallback,
+    error: errorLogger 
+  })
 };
 
-const deleteItemCallback = (data) => {
+const deleteItemCallback = (response) => {
   /* FILL_ME_IN */
+  console.log(JSON.parse(response).data.success);
 };
 
 /*
