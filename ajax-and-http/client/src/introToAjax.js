@@ -4,7 +4,7 @@ const errorLogger = (err) => {
   console.error(err);
 };
 
-/* ========== getAll ========== //
+/* ========== getAllItems ========== //
  *  The function and callback below are here as a basic example of an Ajax call and success callback.
  *
  * As you may have guessed from the function name, this AJAX request should fire a GET request to the server.
@@ -15,40 +15,43 @@ const errorLogger = (err) => {
  *
  * Fill in the missing pieces!
  */
-const getAllFoods = () => {
+const getAllItems = () => {
   $.ajax({
-    type: /* FILL_ME_IN */,
+    type: 'GET',
     url: "http://127.0.0.1:3000/foods",
     contentType: "application/json",
-    success: /* FILL_ME_IN */,
-    error: /* FILL_ME_IN */,
+    success: getAllItemsCallback,
+    error: errorLogger,
   });
 };
 
-const getAllFoodsCallback = (data) => {
-  const foods = JSON.parse(data);
-  const dinner = foods[Math.floor(foods.length * Math.random())];
-  console.log(`Looks like we'll be having ${/* FILL_ME_IN */} for dinner tonight!`);
+const getAllItemsCallback = (data) => {
+  console.log(JSON.parse(data));
 };
 
-/* ========== getOne ========== /
+/* ========== getOneItem ========== /
  * Fix the call below!
  *
  * HINT: There is specific behavior for how Ajax sends GET requests with parameters. How might this relate
- * to the differences between the desired return of "getOne" and "getAll?"
+ * to the differences between the desired return of "getOneItem" and "getAllItems?"
+ * 
+ * CHALLENGE: Are there any other ways we could provide the parameters for our GET request? 
+ * (HINT: this may require you to dig into the documentation for json-server, jQuery.ajax(), and the README)
  */
-const getOneFood = (id) => {
+const getOneItem = (id) => {
   $.ajax({
-    /* FILL_ME_IN */
+    type: 'GET',
     url: "http://127.0.0.1:3000/foods",
     contentType: "application/json",
-    data: /* FILL_ME_IN */,
-    /* FILL_ME_IN */
+    data: { id },
+    success: getOneItemCallback,
+    error: errorLogger
   });
 };
 
-const getOneFoodCallback = (data) => {
-  /* Model this function like the getAllFoodsCallback, taking the differences between the requests into account */
+const getOneItemCallback = (data) => {
+  /* Model this function like the getAllItemsCallback, taking the differences between the requests into account */
+  console.log(JSON.parse(data));
 }
 
 /* Write the rest of the functions below in the style of those above. Do not copy and paste from the above functions!
@@ -64,41 +67,61 @@ const getOneFoodCallback = (data) => {
  * HINT: The most common data format for modern APIs is json (and there are a few commonly used methods with the same name).
  */
 
-/* ========== addFood ========== */
+/* ========== addItem ========== */
 
 /*
-HINT: What type of HTTP request should you be using to add a food item to our storage?
+HINT: What type of HTTP request should you be using to add an item to our Foods collection?
+ANOTHER HINT: What is the shape of the data that you're adding to the collection?
 */
 
-const addFood = (message) => {
+const addItem = (food) => {
+  /* FILL_ME_IN */
+  $.ajax({
+    type: 'POST',
+    url: "http://127.0.0.1:3000/foods",
+    contentType: "application/json",
+    data: food,
+    success: addItemCallback,
+    error: errorLogger 
+  })
+};
+
+const addItemCallback = (data) => {
+  /* FILL_ME_IN */
+  console.log(JSON.parse(data));
+};
+
+/* HINT: It looks like you're trying to update an existing item in our Foods collection - what type of request could be used to achieve this? */
+
+/* ========== updateItem ========== */
+const updateItem = (id, item) => {
   /* FILL_ME_IN */
 };
 
-const addFoodCallback = (data) => {
+const updateItemCallback = (data) => {
+  /* FILL_ME_IN */
+  console.log(JSON.parse(data));
+};
+
+/* ========== deleteItem ========== */
+const deleteItem = (id) => {
   /* FILL_ME_IN */
 };
 
-/* HINT: It looks like you're trying to update an existing food item in storage-- what type of request could be used to achieve this? */
-
-/* ========== updateFood ========== */
-const updateFood = (id, message) => {
+const deleteItemCallback = (data) => {
   /* FILL_ME_IN */
 };
 
-const updateFoodCallback = (data) => {
-  /* FILL_ME_IN */
-};
+/*
+If you take a look at our sampleData.json file, you'll see that there's another collection that we can interact with. Similar to the
+Foods collection, we also have a Vehicles collection available to us. After studying what exists in the Vehicle collection, your task
+(if you choose to accept it) is to write functions that provide us data with the following specifications:
 
-/* ========== deleteFood ========== */
-const deleteFoodMessage = (id) => {
-  /* FILL_ME_IN */
-};
-
-const deleteFoodCallback = (data) => {
-  /* FILL_ME_IN */
-};
-
-/* If you take a look at our sampleData.json file, you'll see that there's another collection that we can interact with. Similar to the  */
+- write a function that returns an array of Vehicles that have manual transmissions
+- write a function that returns an array of Vehicles that run on ethanol
+- write a function that accepts a valid vehicle specification and returns an array of Vehicles that includes those specifications
+(e.g., "Power Steering"; see the Vehicles in sampleData.json for examples)
+*/
 
 // COMMENT: There's an opportunity to talk about the difference in use cases for PUT and PATCH requests here (or at least to reference material in the README)
 // INSTRUCTIONAL CHANGE/ADDITION: Could spend more time having students refactor provided Node HTTP server to use Express instead as an additional exercise

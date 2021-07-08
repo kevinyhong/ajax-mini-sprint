@@ -1,14 +1,23 @@
 describe("Intro To Ajax", () => {
-  describe("getAllFoods", () => {
+  var example = {
+    "id": 7889,
+    "uid": "af692d95-2bf3-4036-b989-e54d9e96db16",
+    "dish": "Kebab",
+    "description": "Fresh parsley, Italian sausage, shallots, garlic, sun-dried tomatoes and mozzarella cheese in an all-butter crust. With a side of mixed fruits.",
+    "ingredient": "Miso",
+    "measurement": "2 gallon"
+  };
+
+  describe("getAllItems", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      getAllFoods();
+      getAllItems();
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(getAll).to.be.a("function");
+      expect(getAllItems).to.be.a("function");
     });
     it("should make an Ajax call", () => {
       expect($.ajax.called).to.equal(true);
@@ -18,47 +27,49 @@ describe("Intro To Ajax", () => {
     });
     it("should send the request to the correct endpoint", () => {
       expect(
-        $.ajax.calledWithMatch({ url: "http://127.0.0.1:3000/foodsl" }) ||
+        $.ajax.calledWithMatch({ url: "http://127.0.0.1:3000/foods" }) ||
           $.ajax.calledWithMatch({ url: "http://localhost:3000/foods" })
       ).to.equal(true);
     });
     it("should be given the correct success and failure callbacks", () => {
-      expect($.ajax.calledWithMatch({ success: getAllFoodsCallback })).to.equal(
+      expect($.ajax.calledWithMatch({ success: getAllItemsCallback })).to.equal(
         true
       );
       expect($.ajax.calledWithMatch({ error: errorLogger })).to.equal(true);
     });
   });
 
-  describe("getAllCB", () => {
+  describe("getAllItemsCB", () => {
     beforeEach(() => {
       sinon.replace(console, "log", sinon.fake());
-      getAllCallback(JSON.stringify(["Apple", "pies", "are", "delicious"]));
+      getAllItemsCallback(JSON.stringify([example]));
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should invoke the callback ", () => {
-      expect(getAllCallback).to.be.a("function");
+      expect(getAllItemsCallback).to.be.a("function");
       expect(console.log.called).to.equal(true);
     });
     it("should console log the correctly processed data", () => {
       expect(console.log.args[0][0]).to.be.an("array");
-      expect(console.log.args[0][0][0]).to.be.a("string");
-      expect(console.log.args[0][0][0]).to.equal("Apple");
+      for (key in console.log.args[0][0][0]) {
+        expect(console.log.args[0][0][0][key]).to.equal(example[key]);
+      }
+
     });
   });
 
-  describe("getOne", () => {
+  describe("getOneItem", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      getOne(0);
+      getOneItem(7889);
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(getOne).to.be.a("function");
+      expect(getOneItem).to.be.a("function");
     });
     it("should make an Ajax call", () => {
       expect($.ajax.called).to.equal(true);
@@ -68,51 +79,53 @@ describe("Intro To Ajax", () => {
     });
     it("should send the request to the correct endpoint", () => {
       expect(
-        $.ajax.calledWithMatch({ url: "http://localhost:3000/getOne" }) ||
-          $.ajax.calledWithMatch({ url: "http://127.0.0.1:3000/getOne" })
+        $.ajax.calledWithMatch({ url: "http://localhost:3000/foods" }) ||
+          $.ajax.calledWithMatch({ url: "http://127.0.0.1:3000/foods" })
       ).to.equal(true);
     });
     it("should send the Ajax request using the input data", () => {
-      expect($.ajax.calledWithMatch({ data: { id: 0 } })).to.equal(true);
+      expect($.ajax.calledWithMatch({ data: { id: 7889 } })).to.equal(true);
     });
     it("should use the correct callbacks for success and failure", () => {
-      expect($.ajax.calledWithMatch({ success: getOneCallback })).to.equal(
+      expect($.ajax.calledWithMatch({ success: getOneItemCallback })).to.equal(
         true
       );
       expect($.ajax.calledWithMatch({ error: errorLogger })).to.equal(true);
     });
   });
 
-  describe("getOneCB", () => {
+  describe("getOneItemCB", () => {
     beforeEach(() => {
       sinon.replace(console, "log", sinon.fake());
-      getOneCallback('{"data":"A message."}');
+      getOneItemCallback(JSON.stringify(example));
     });
     afterEach(() => {
       sinon.restore();
     });
 
     it("should be a function", () => {
-      expect(getOneCallback).to.be.a("function");
+      expect(getOneItemCallback).to.be.a("function");
     });
     it("should invoke the callback ", () => {
       expect(console.log.called).to.equal(true);
     });
     it("should console log the correctly processed data", () => {
-      expect(console.log.args[0][0]).to.equal("A message.");
+      for (key in console.log.args[0][0][0]) {
+        expect(console.log.args[0][0][0][key]).to.equal(example[key]);
+      }
     });
   });
 
-  describe("sendMessage", () => {
+  describe("addItem", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      sendMessage("Hi, my name is Tom.");
+      addItem(example);
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(sendMessage).to.be.a("function");
+      expect(addItem).to.be.a("function");
     });
     it("should make an Ajax call", () => {
       expect($.ajax.called).to.equal(true);
@@ -122,42 +135,46 @@ describe("Intro To Ajax", () => {
     });
     it("should send the request to the correct endpoint", () => {
       expect(
-        $.ajax.calledWithMatch({ url: "http:/localhost:3000/send" }) ||
-          $.ajax.calledWithMatch({ url: "http://127.0.0.1:3000/send" })
+        $.ajax.calledWithMatch({ url: "http:/localhost:3000/foods" }) ||
+          $.ajax.calledWithMatch({ url: "http://127.0.0.1:3000/foods" })
       ).to.equal(true);
     });
     it("should send the Ajax request using the input data", () => {
-      expect($.ajax.args[0][0].data).to.eql({ message: "Hi, my name is Tom." });
+      for (key in $.ajax.args[0][0].data) {
+        expect($.ajax.args[0][0].data[key]).to.eql(example[key]);
+      }
     });
     it("should use the correct callbacks for success and failure", () => {
-      expect($.ajax.calledWithMatch({ success: sendCallback })).to.equal(true);
+      expect($.ajax.calledWithMatch({ success: addItemCallback })).to.equal(true);
       expect($.ajax.calledWithMatch({ error: errorLogger })).to.equal(true);
     });
   });
 
-  describe("sendMessageCB", () => {
+  describe("addItemCB", () => {
     beforeEach(() => {
       sinon.replace(console, "log", sinon.fake());
-      sendCallback('{"data":{"id":5}}');
+      addItemCallback(`{"data": ${JSON.stringify(example)}}`);
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(sendCallback).to.be.a("function");
+      expect(addItemCallback).to.be.a("function");
     });
     it("should invoke the callback ", () => {
       expect(console.log.called).to.equal(true);
     });
     it("should console log the correctly processed data", () => {
-      expect(console.log.args[0][0]).to.equal(5);
+      expect(console.log.args[0][0].data.dish).to.equal('Kebab');
     });
   });
 
-  describe("updateMessage", () => {
+  describe("updateItem", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      updateMessage(0, "I fixed it!");
+      updateMessage(7889, JSON.stringify({
+          "measurement": "1 gallon"
+        }));
     });
     afterEach(() => {
       sinon.restore();
@@ -178,7 +195,7 @@ describe("Intro To Ajax", () => {
       ).to.equal(true);
     });
     it("should send the Ajax request using the input data", () => {
-      expect($.ajax.args[0][0].data).to.eql({ id: 0, message: "I fixed it!" });
+      expect($.ajax.args[0][0].data).to.eql({ id: 7889, message: "I fixed it!" });
     });
     it("should use the correct callbacks for success and failure", () => {
       expect($.ajax.calledWithMatch({ success: updateCallback })).to.equal(
@@ -188,16 +205,16 @@ describe("Intro To Ajax", () => {
     });
   });
 
-  describe("updateMessageCB", () => {
+  describe("updateItemCB", () => {
     beforeEach(() => {
       sinon.replace(console, "log", sinon.fake());
-      updateCallback(JSON.stringify({ data: { success: "Done." } }));
+      updateItemCallback(JSON.stringify({ data: { success: "Done." } }));
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(updateCallback).to.be.a("function");
+      expect(updateItemCallback).to.be.a("function");
     });
     it("should invoke the callback", () => {
       expect(console.log.called).to.equal(true);
@@ -207,7 +224,7 @@ describe("Intro To Ajax", () => {
     });
   });
 
-  describe("deleteMessage", () => {
+  describe("deleteitem", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
       deleteMessage(0);
