@@ -147,6 +147,8 @@ This type of request, unsurprisingly, deletes an entry from storage according to
 
 #### Further Resources
 
+[Chatterbox Exercise in gLearn](https://learn-2.galvanize.com/content_link/github.com/gSchool/sei.sprint.client-side-concepts/Browser%20Apps,%20jQuery,%20and%20Ajax/exercises/chatterbox-client.md)
+
 [Understanding Javascript Callbacks](https://www.youtube.com/watch?v=Nau-iEEgEoM) (Video)
 
 [jQuery's Ajax](https://api.jquery.com/jquery.ajax/) (Docs)
