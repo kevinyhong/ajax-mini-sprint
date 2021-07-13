@@ -15,10 +15,10 @@ const errorLogger = (err) => {
  *
  * Fill in the missing pieces!
  */
-const getAllItems = () => {
+const getAllItems = (collection) => {
   $.ajax({
     type: 'GET',
-    url: "http://127.0.0.1:3000/foods",
+    url: `http://127.0.0.1:3000/${collection}`,
     contentType: "application/json",
     success: getAllItemsCallback,
     error: errorLogger,
@@ -38,10 +38,10 @@ const getAllItemsCallback = (data) => {
  * CHALLENGE: Are there any other ways we could provide the parameters for our GET request? 
  * (HINT: this may require you to dig into the documentation for json-server, jQuery.ajax(), and the README)
  */
-const getOneItem = (id) => {
+const getOneItem = (collection, id) => {
   $.ajax({
     type: 'GET',
-    url: "http://127.0.0.1:3000/foods",
+    url: `http://127.0.0.1:3000/${collection}`,
     contentType: "application/json",
     data: { id },
     success: getOneItemCallback,
@@ -74,11 +74,11 @@ HINT: What type of HTTP request should you be using to add an item to our Foods 
 ANOTHER HINT: What is the shape of the data that you're adding to the collection?
 */
 
-const addItem = (item) => {
+const addItem = (collection, item) => {
   /* FILL_ME_IN */
   $.ajax({
     type: 'POST',
-    url: "http://127.0.0.1:3000/foods",
+    url: `http://127.0.0.1:3000/${collection}`,
     contentType: "application/json",
     data: item,
     success: addItemCallback,
@@ -94,11 +94,11 @@ const addItemCallback = (response) => {
 /* HINT: It looks like you're trying to update an existing item in our Foods collection - what type of request could be used to achieve this? */
 
 /* ========== updateItem ========== */
-const updateItem = (id, item) => {
+const updateItem = (collection, id, item) => {
   /* FILL_ME_IN */
   $.ajax({
     type: 'PUT',
-    url: `http://127.0.0.1:3000/foods/${id}`,
+    url: `http://127.0.0.1:3000/${collection}/${id}`,
     contentType: "application/json",
     data: item,
     success: updateItemCallback,
@@ -113,11 +113,11 @@ const updateItemCallback = (response) => {
 };
 
 /* ========== deleteItem ========== */
-const deleteItem = (id) => {
+const deleteItem = (collection, id) => {
   /* FILL_ME_IN */
   $.ajax({
     type: 'DELETE',
-    url: `http://127.0.0.1:3000/foods`,
+    url: `http://127.0.0.1:3000/${collection}`,
     contentType: "application/json",
     data: { id },
     success: deleteItemCallback,
@@ -133,11 +133,11 @@ const deleteItemCallback = (response) => {
 /*
 If you take a look at our sampleData.json file, you'll see that there's another collection that we can interact with. Similar to the
 Foods collection, we also have a Vehicles collection available to us. After studying what exists in the Vehicle collection, your task
-(if you choose to accept it) is to write functions that provide us data with the following specifications:
+(if you choose to accept it) is to write functions that provide us with additional features:
 
-- write a function that returns an array of Vehicles that have manual transmissions
-- write a function that returns an array of Vehicles that run on ethanol
-- write a function that accepts a valid vehicle specification and returns an array of Vehicles that includes those specifications
+- Write a function for each collection that would validate any inputs into the collection and incorporate them into the appropriate
+  functions.
+- 
 (e.g., "Power Steering"; see the Vehicles in sampleData.json for examples)
 */
 
