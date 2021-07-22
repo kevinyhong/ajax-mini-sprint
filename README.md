@@ -39,8 +39,8 @@ If the request is successful, we should see some data come back like so:
 {
   "id":6937,
   "uid":"5a4df2af-451a-4dbb-b50c-8ed199d6dd8f",
-  "dish":"Scotch Eggs"
-  ,"description":"Breaded fried chicken with waffles. Served with maple syrup.",
+  "dish":"Scotch Eggs",
+  "description":"Breaded fried chicken with waffles. Served with maple syrup.",
   "ingredient":"Garam Masala",
   "measurement":"3 gallon"
 }
@@ -50,9 +50,7 @@ The example above shows a few of the key components required for our AJAX reques
   - a URL that specifies where to find this resource
   - a HTTP method that specifies what we want to do with the resource
   - a function to invoke if the request succeeds
-  - a function to invoke if the request fails
-
-
+  - a function to invoke if the request fails for any particular reason
 
 ---
 
@@ -154,7 +152,8 @@ jQuery's AJAX method is not the only way that we can make AJAX requests in the b
 - [Axios](https://www.npmjs.com/package/axios) - a [promise-based](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) external library that allows us to make HTTP requests
 - [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) - also a promise-based API built into the browser similar to axios
 
-Refactor the previous exercises using any (or all) of the above tools.
+- [ ] Explore how promises work in the context of asynchronous code execution
+- [ ] Refactor the previous exercises using any of the above tools
 
 ---
 
