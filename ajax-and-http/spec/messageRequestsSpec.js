@@ -31,18 +31,19 @@ describe("Message Requests", () => {
 
     it("should include an Authorization header as part of the request", () => {
       fetchMessagesFromParseServer();
+      expect(API_KEY).to.be.a('string');
       expect($.ajax.calledWithMatch({ headers: { Authorization: API_KEY } })).to.equal(true);
     });
 
     it("should invoke the callback argument on success", () => {
-      const handleMessagesSpy = sinon.spy();
+      var handleMessagesSpy = sinon.spy();
       fetchMessagesFromParseServer((data) => {
         handleMessagesSpy(data);
         expect(handleMessagesSpy.called).to.equal(true);
       });
     })
 
-    it("should fetch 100 messages from the Parse server", () => {
+    it("should fetch 100 messages from the Parse server and pass the messages into the callback", () => {
       fetchMessagesFromParseServer((data) => {
         expect(data).to.be.an.instanceof(Array);
         expect(data.length).to.eql(100);
@@ -96,7 +97,7 @@ describe("Message Requests", () => {
     });
 
     it("should invoke the callback argument on success", () => {
-      const addMessageSpy = sinon.spy();
+      var addMessageSpy = sinon.spy();
       var message = {
         username: 'shawndrost',
         text: 'trololo',
