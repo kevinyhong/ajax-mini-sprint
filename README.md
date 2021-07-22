@@ -163,9 +163,7 @@ jQuery's AJAX method is not the only way that we can make AJAX requests in the b
 
 [Understanding Javascript Callbacks](https://www.youtube.com/watch?v=Nau-iEEgEoM) (Video)
 
-[jQuery's Ajax](https://api.jquery.com/jquery.ajax/) (Docs)
-
-[XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) (Docs)
+[jQuery's AJAX method](https://api.jquery.com/jquery.ajax/) (Docs)
 
 ---
 
