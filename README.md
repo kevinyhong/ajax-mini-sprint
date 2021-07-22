@@ -132,16 +132,29 @@ Continuing the computer analogy, a PATCH request is like switching out a compone
 
 This type of request, unsurprisingly, deletes an entry from storage according to the identifying information supplied as a parameter of the request.
 
-**Getting Started**
+---
 
-- [ ] `cd` into the `ajax-and-http/client` folder
+## Getting Started
+
+- [ ] `cd` into the `ajax-and-http` folder
 - [ ] Run `npm install` to install any local dependencies
-- [ ] Start the SpecRunner by running `npm start` in the terminal
+- [ ] Start the json-server by running `npm start` in the terminal
 - [ ] Open a second terminal window
-- [ ] `cd` into the `callback-prompts/server` folder`
-- [ ] Run `npm start` to spin up the server locally
-- [ ] Fill in the Ajax calls in the AJAX Practice file
-- [ ] Fill in the refactored Ajax calls in the Anonymous Refactor file
+- [ ] Run `npm test` to spin up SpecRunner
+- [ ] Fill in the refactored Ajax calls in the Intro To AJAX practice file
+- [ ] Work through the Message Requests file
+
+---
+
+## Advanced Content
+
+jQuery's AJAX method is not the only way that we can make AJAX requests in the browser, there are several other tools that can also accomplish this same task:
+
+- [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) - the underlying API for making requests (jQuery uses a custom XHR object if you dig into the source code)
+- [Axios](https://www.npmjs.com/package/axios) - a [promise-based](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) external library that allows us to make HTTP requests
+- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) - also a promise-based API built into the browser similar to axios
+
+Refactor the previous exercises using any (or all) of the above tools.
 
 ---
 
