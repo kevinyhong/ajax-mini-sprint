@@ -8,9 +8,9 @@ This mini-sprint is designed to build an understanding of how client-server comm
 
 ## HTTP Request vs AJAX Request
 
-A protocol for applications to take action on data sources is the [Hypertext Transfer Protocol (HTTP)](https://datatracker.ietf.org/doc/html/rfc7231). From fetching HTML documents to creating/updating data stored on another machine in another application, a HTTP request is at the core of these processes. One example of a request that you might be familiar with is when your browser makes a request for the HTML document when you navigate to a web page. 
+A protocol for applications to take action on data sources is the [Hypertext Transfer Protocol (HTTP)](https://developer.mozilla.org/en-US/docs/Web/HTTP). From fetching HTML documents to creating/updating data stored on another machine in another application, a HTTP request is at the core of these processes. One example of a request that you might be familiar with is when your browser makes a request for the HTML document when you navigate to a web page. 
 
-When you provide a URL in your browser, the browser will send a request to fetch the HTML document related to that URL. After some time, 
+When you provide a URL in the address bar of your browser, the browser will send a request to fetch the HTML document from that URL. Because it takes some time for the request to reach it's destination and the browser doesn't know how long it'll take to receive a response back with the document we want, this process of sending a HTTP request and handling the associated response is [asynchronous](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests). Because you don't know exactly when the response will arrive, you can specify a [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) to be executed when our application receives the response. You can actually specify multiple callback functions based on the type of response you receive - an example would be in the event that we don't receive a successful response to our request, we may want our application to behave differently (think about unsuccessfully logging into your email account due to a password typo).
 
 
 ---
@@ -23,11 +23,11 @@ $.ajax({
   url: 'https://127.0.0.1:3000/foods/6937',
   method: 'GET',
   success: function (data) {
-    // Here we can log the data we get back from Random Data API
+    // Here we log the data we get back from Random Data API
     console.log(data)
   },
   error: function (error) {
-    // If there's any issues in using the API, we can handle the error that we get back
+    // If there's any issues in using the API, we write the error provided in the response to our console
     console.error(error)
   }
 });
@@ -56,13 +56,13 @@ The example above shows a few of the key components required for our AJAX reques
 
 ## What's in a URL?
 
-A [Uniform Resource Locator (URL)](https://url.spec.whatwg.org/#concept-url) is composed of several parts (we'll use the URL when accessing our Gmail account as an example - https://mail.google.com/mail/u/0/#inbox):
+A [Uniform Resource Locator (URL)](https://developer.mozilla.org/en-US/docs/Glossary/URL) is composed of several parts (we'll use the URL when accessing our Gmail account as an example - https://mail.google.com/mail/u/0/#inbox):
 
 
   ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/URI_syntax_diagram.svg/1068px-URI_syntax_diagram.svg.png)
 
 
-Let's break it down~
+[Let's break it down~](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL)
   - The scheme - **https**
     - The HOW - this part shows what type of URL we're dealing with. Examples of schemes that you may have seen so far are http, https, file, ftp, git
   - The host (and port) - **mail.google.com**
@@ -80,7 +80,7 @@ Let's break it down~
         - i: "instant-video"
         - ref: "nb_sb_noss"
     - NOTE: be mindful that both types of parameters are exposed during a request since they are included in the URL, so including sensitive information is **not advisable**
-    - A #fragment can point to a more specific portion of the resource that you're trying to access (usually, it's an element on the web page with a given id - the fragment would have to match the element id)
+    - An #anchor (or #fragment) can point to a bookmarked portion of the page for easier access
       - When looking at the [URL standard](https://url.spec.whatwg.org/), you can refer to specific parts of the document by using different fragments
         - https://url.spec.whatwg.org/#special-scheme - shows you special schemes (and their ports)
         - https://url.spec.whatwg.org/#concept-url - shows you how URLs can be represented
