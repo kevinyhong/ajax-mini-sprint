@@ -39,7 +39,7 @@ not being routed to the correct location.
 // HINT: You can reuse the errorLogger callback here if you'd like to or create a custom error logger
 
 var fetchMessagesFromParseServer = function (/* FILL_ME_IN */ callback) {
-  /* FILL_ME_IN */
+  /* START SOLUTION */
   $.ajax({
     type: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/chatterbox/messages/${CAMPUS}`,
@@ -50,11 +50,19 @@ var fetchMessagesFromParseServer = function (/* FILL_ME_IN */ callback) {
       callback(data)
     },
     error: errorLogger
-  })
+  });
+  /* ELSE
+    // TODO: Make an AJAX request to fetch messages from the Message server
+    $.ajax({
+      headers: {
+        // You'll need to make use of a particular header to make a valid request
+      }
+    })
+    END SOLUTION */
 };
 
 var addMessageToParseServer = function (/* FILL_ME_IN */ message, callback) {
-  /* FILL_ME_IN */
+  /* START SOLUTION */
   $.ajax({
     type: 'POST',
     url: `https://app-hrsei-api.herokuapp.com/api/chatterbox/messages/${CAMPUS}`,
@@ -66,5 +74,8 @@ var addMessageToParseServer = function (/* FILL_ME_IN */ message, callback) {
       callback(data)
     },
     error: errorLogger
-  })
+  });
+  /* ELSE
+    // TODO: Make an AJAX request to send a message to the Message server
+    END SOLUTION */
 };

@@ -1,4 +1,7 @@
 // For the purposes of this exercise, use the function below for your error handling callback in all Ajax calls.
+const FILL_ME_IN = '';
+const REPLACE_ME = () => {};
+
 const errorLogger = (err) => {
   console.log("Oops! There was an error.");
   console.error(err);
@@ -15,7 +18,8 @@ const errorLogger = (err) => {
  *
  * Fill in the missing pieces!
  */
-const getAllItems = (collection) => {
+var getAllItems = (collection) => {
+  /* START SOLUTION */
   $.ajax({
     type: 'GET',
     url: `http://127.0.0.1:3000/${collection}`,
@@ -23,10 +27,24 @@ const getAllItems = (collection) => {
     success: getAllItemsCallback,
     error: errorLogger,
   });
+  /* ELSE
+    $.ajax({
+      type: FILL_ME_IN,
+      url: FILL_ME_IN,
+      contentType: "application/json",
+      success: REPLACE_ME,
+      error: REPLACE_ME,
+    });
+  
+    END SOLUTION */
 };
 
-const getAllItemsCallback = (data) => {
+var getAllItemsCallback = (data) => {
+  /* START SOLUTION */
   console.log(JSON.parse(data));
+  /* ELSE
+    // TODO: Log the data for the item that comes back
+    END SOLUTION */
 };
 
 /* ========== getOneItem ========== /
@@ -38,7 +56,8 @@ const getAllItemsCallback = (data) => {
  * CHALLENGE: Are there any other ways we could provide the parameters for our GET request? 
  * (HINT: this may require you to dig into the documentation for json-server, jQuery.ajax(), and the README)
  */
-const getOneItem = (collection, id) => {
+var getOneItem = (collection, id) => {
+  /* START SOLUTION */
   $.ajax({
     type: 'GET',
     url: `http://127.0.0.1:3000/${collection}`,
@@ -47,11 +66,26 @@ const getOneItem = (collection, id) => {
     success: getOneItemCallback,
     error: errorLogger
   });
+  /* ELSE
+    $.ajax({
+      type: FILL_ME_IN,
+      url: FILL_ME_IN,
+      contentType: FILL_ME_IN,
+      data: FILL_ME_IN,
+      success: REPLACE_ME,
+      error: REPLACE_ME,
+    });
+  
+    END SOLUTION */
 };
 
-const getOneItemCallback = (data) => {
+var getOneItemCallback = (data) => {
   /* Model this function like the getAllItemsCallback, taking the differences between the requests into account */
+  /* START SOLUTION */
   console.log(JSON.parse(data));
+  /* ELSE
+    // TODO: Log the data for the item that comes back
+    END SOLUTION */
 }
 
 /* Write the rest of the functions below in the style of those above. Do not copy and paste from the above functions!
@@ -74,60 +108,90 @@ HINT: What type of HTTP request should you be using to add an item to our Foods 
 ANOTHER HINT: What is the shape of the data that you're adding to the collection?
 */
 
-const addItem = (collection, item) => {
-  /* FILL_ME_IN */
+var addItem = (collection, item) => {
+  /* START SOLUTION */
   $.ajax({
     type: 'POST',
     url: `http://127.0.0.1:3000/${collection}`,
     contentType: "application/json",
     data: item,
     success: addItemCallback,
-    error: errorLogger 
+    error: errorLogger
   })
+  /* ELSE
+    $.ajax({
+      type: FILL_ME_IN,
+      url: FILL_ME_IN,
+      data: FILL_ME_IN,
+    });
+  
+    END SOLUTION */
 };
 
-const addItemCallback = (response) => {
-  /* FILL_ME_IN */
+var addItemCallback = (response) => {
+  /* START SOLUTION */
   console.log(JSON.parse(response));
+  /* ELSE
+    // TODO: Log the confirmation for the item that comes back
+    END SOLUTION */
 };
 
 /* HINT: It looks like you're trying to update an existing item in our Foods collection - what type of request could be used to achieve this? */
 
 /* ========== updateItem ========== */
-const updateItem = (collection, id, item) => {
-  /* FILL_ME_IN */
+var updateItem = (collection, id, item) => {
+  /* START SOLUTION */
   $.ajax({
     type: 'PUT',
     url: `http://127.0.0.1:3000/${collection}/${id}`,
     contentType: "application/json",
     data: item,
     success: updateItemCallback,
-    error: errorLogger 
-  })
+    error: errorLogger
+  });
+  /* ELSE
+    $.ajax({
+      type: FILL_ME_IN,
+      url: FILL_ME_IN,
+      data: FILL_ME_IN,
+    });
+  
+    END SOLUTION */
+  
 };
 
 /* updateItemCallback() should extract the message from the server's response object */
-const updateItemCallback = (response) => {
-  /* FILL_ME_IN */
+var updateItemCallback = (response) => {
+  /* START SOLUTION */
   console.log(JSON.parse(response).data.success);
+  /* ELSE
+    // TODO: Log the confirmation for the item that was updated
+    END SOLUTION */
 };
 
 /* ========== deleteItem ========== */
-const deleteItem = (collection, id) => {
-  /* FILL_ME_IN */
+var deleteItem = (collection, id) => {
+  /* START SOLUTION */
   $.ajax({
     type: 'DELETE',
     url: `http://127.0.0.1:3000/${collection}`,
     contentType: "application/json",
     data: { id },
     success: deleteItemCallback,
-    error: errorLogger 
-  })
+    error: errorLogger
+  });
+  /* ELSE
+    // TODO: Make an AJAX request to delete an item in a collection
+  
+    END SOLUTION */
 };
 
-const deleteItemCallback = (response) => {
-  /* FILL_ME_IN */
+var deleteItemCallback = (response) => {
+  /* START SOLUTION */
   console.log(JSON.parse(response).data.success);
+  /* ELSE
+    // TODO: Log the confirmation for the item that was deleted
+    END SOLUTION */
 };
 
 /*
@@ -137,7 +201,7 @@ Foods collection, we also have a Vehicles collection available to us. After stud
 
 - Write a function for each collection that would validate any inputs into the collection and incorporate them into the appropriate
   functions.
-- 
+-
 (e.g., "Power Steering"; see the Vehicles in sampleData.json for examples)
 */
 

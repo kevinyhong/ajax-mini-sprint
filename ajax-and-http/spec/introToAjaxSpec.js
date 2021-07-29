@@ -8,16 +8,34 @@ describe("Intro To Ajax", () => {
     "measurement": "2 gallon"
   };
 
+  var methodsToTest = {
+    getAllItems,
+    getAllItemsCallback,
+    getOneItem,
+    getOneItemCallback,
+    addItem,
+    addItemCallback,
+    updateItem,
+    updateItemCallback,
+    deleteItem,
+    deleteItemCallback
+  };
+
   describe("getAllItems", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      getAllItems('foods');
+      sinon.replace(methodsToTest, "getAllItems", sinon.fake(getAllItems))
+      methodsToTest.getAllItems('foods');
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(getAllItems).to.be.a("function");
+      expect(methodsToTest.getAllItems).to.be.a("function");
+    });
+    it("should take in the name of a collection as an argument", () => {
+      expect(methodsToTest.getAllItems.args[0].length).to.not.equal(0);
+      expect(methodsToTest.getAllItems.args[0]).to.include("foods");
     });
     it("should make an Ajax call", () => {
       expect($.ajax.called).to.equal(true);
@@ -47,29 +65,37 @@ describe("Intro To Ajax", () => {
     afterEach(() => {
       sinon.restore();
     });
+    it("should be a function", () => {
+      expect(getAllItemsCallback).to.be.a("function");
+    });
     it("should invoke the callback ", () => {
       expect(getAllItemsCallback).to.be.a("function");
       expect(console.log.called).to.equal(true);
     });
-    it("should console log the correctly processed data", () => {
+    it("should log the data in the response", () => {
       expect(console.log.args[0][0]).to.be.an("array");
       for (key in console.log.args[0][0][0]) {
         expect(console.log.args[0][0][0][key]).to.equal(example[key]);
       }
-
     });
   });
 
   describe("getOneItem", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      getOneItem('foods', 7889);
+      sinon.replace(methodsToTest, "getOneItem", sinon.fake(getOneItem))
+      methodsToTest.getOneItem('foods', 7889);
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(getOneItem).to.be.a("function");
+      expect(methodsToTest.getOneItem).to.be.a("function");
+    });
+    it("should take in the name of a collection and an item ID as arguments", () => {
+      expect(methodsToTest.getOneItem.args[0].length).to.equal(2);
+      expect(methodsToTest.getOneItem.args[0]).to.include("foods");
+      expect(methodsToTest.getOneItem.args[0]).to.include(7889);
     });
     it("should make an Ajax call", () => {
       expect($.ajax.called).to.equal(true);
@@ -119,13 +145,19 @@ describe("Intro To Ajax", () => {
   describe("addItem", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      addItem('foods', example);
+      sinon.replace(methodsToTest, "addItem", sinon.fake(addItem));
+      methodsToTest.addItem('foods', example);
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(addItem).to.be.a("function");
+      expect(methodsToTest.addItem).to.be.a("function");
+    });
+    it("should take in the name of a collection and an item object as arguments", () => {
+      expect(methodsToTest.addItem.args[0].length).to.equal(2);
+      expect(methodsToTest.addItem.args[0]).to.include("foods");
+      expect(methodsToTest.addItem.args[0]).to.include(example);
     });
     it("should make an Ajax call", () => {
       expect($.ajax.called).to.equal(true);
@@ -164,21 +196,30 @@ describe("Intro To Ajax", () => {
     it("should invoke the callback ", () => {
       expect(console.log.called).to.equal(true);
     });
-    it("should console log the correctly processed data", () => {
+    it("should log the item that was sent to the server on success", () => {
       expect(console.log.args[0][0].data.dish).to.equal('Kebab');
     });
   });
 
   describe("updateItem", () => {
+    var change = { ingredient: "Ground beef" };
+
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      updateItem('foods', 7889, { ingredient: "Ground beef" });
+      sinon.replace(methodsToTest, "updateItem", sinon.fake(updateItem));
+      methodsToTest.updateItem('foods', 7889, change);
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(updateItem).to.be.a("function");
+      expect(methodsToTest.updateItem).to.be.a("function");
+    });
+    it("should take in the name of a collection and an item object as arguments", () => {
+      expect(methodsToTest.updateItem.args[0].length).to.equal(3);
+      expect(methodsToTest.updateItem.args[0]).to.include("foods");
+      expect(methodsToTest.updateItem.args[0]).to.include(7889);
+      expect(methodsToTest.updateItem.args[0]).to.include(change);
     });
     it("should make an Ajax call", () => {
       expect($.ajax.called).to.equal(true);
@@ -217,7 +258,7 @@ describe("Intro To Ajax", () => {
     it("should invoke the callback", () => {
       expect(console.log.called).to.equal(true);
     });
-    it("should console log the correctly processed data", () => {
+    it("should log the UPDATE confirmation", () => {
       expect(console.log.args[0][0]).to.equal("Done.");
     });
   });
@@ -225,13 +266,19 @@ describe("Intro To Ajax", () => {
   describe("deleteItem", () => {
     beforeEach(() => {
       sinon.replace($, "ajax", sinon.fake());
-      deleteItem('foods', 7889);
+      sinon.replace(methodsToTest, "deleteItem", sinon.fake(deleteItem))
+      methodsToTest.deleteItem('foods', 7889);
     });
     afterEach(() => {
       sinon.restore();
     });
     it("should be a function", () => {
-      expect(deleteItem).to.be.a("function");
+      expect(methodsToTest.deleteItem).to.be.a("function");
+    });
+    it("should take in the name of a collection and an item id as arguments", () => {
+      expect(methodsToTest.deleteItem.args[0].length).to.equal(2);
+      expect(methodsToTest.deleteItem.args[0]).to.include("foods");
+      expect(methodsToTest.deleteItem.args[0]).to.include(7889);
     });
     it("should make an Ajax call", () => {
       expect($.ajax.called).to.equal(true);
@@ -269,7 +316,7 @@ describe("Intro To Ajax", () => {
     it("should invoke the callback ", () => {
       expect(console.log.called).to.equal(true);
     });
-    it("should console log the correctly processed data", () => {
+    it("should log the DELETE confirmation", () => {
       expect(console.log.args[0][0]).to.equal("Done.");
     });
   });
