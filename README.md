@@ -8,19 +8,26 @@ This mini-sprint is designed to build an understanding of how client-server comm
 
 ## HTTP Request vs AJAX Request
 
-A protocol for applications to take action on data sources is the [Hypertext Transfer Protocol (HTTP)](https://developer.mozilla.org/en-US/docs/Web/HTTP). From fetching HTML documents to creating/updating data stored on another machine in another application, a HTTP request is at the core of these processes. One example of a request that you might be familiar with is when your browser makes a request for the HTML document when you navigate to a web page. 
+A protocol for applications to take action on data sources is the [Hypertext Transfer Protocol (HTTP)](https://developer.mozilla.org/en-US/docs/Web/HTTP). From fetching HTML documents to creating/updating data stored on another machine in another application, a HTTP request is at the core of these processes. One example of a request that you might be familiar with is when your browser makes a request for the HTML document when you navigate to a web page.
 
-When you provide a URL in the address bar of your browser, the browser will send a request to fetch the HTML document from that URL. Because it takes some time for the request to reach it's destination and the browser doesn't know how long it'll take to receive a response back with the document we want, this process of sending a HTTP request and handling the associated response is [asynchronous](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests). Because you don't know exactly when the response will arrive, you can specify a [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) to be executed when our application receives the response. You can actually specify multiple callback functions based on the type of response you receive - an example would be in the event that we don't receive a successful response to our request, we may want our application to behave differently (think about unsuccessfully logging into your email account due to a password typo).
+While your browser might be making requests for the HTML document, style sheets, and scripts that are specified in the initial document, what if you wanted to fetch data that might be useful for your application or that you might want to display to the user (say your account balance) without hard-coding that into the document? That's where [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started) comes in: an AJAX request allows your applications to make HTTP requests to interact with resources without reloading the page.
+
+---
+
+## AJAX is Asynchronous
+
+Because it takes some time for the request to reach it's destination and the browser doesn't know how long it'll take to receive a response back with the document we want, this process of sending a HTTP request and handling the associated response is typically [asynchronous](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests) to prevent any blocking behavior when making the request. Because you don't know exactly when the response will arrive, you need to specify a [callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) to be executed when our application receives the response. You can specify multiple callback functions based on the type of response you receive - an example would be in the event that we don't receive a successful response to our request, we may want our application to behave differently (think about unsuccessfully logging into your email account due to a email/password typo).
 
 
 ---
+
 ## JQuery's Ajax Method
-Taking [jQuery's ajax method](https://api.jquery.com/jquery.ajax/) as a starting point to understand how we can make requests about data, let's look at an example request to fetch some JSON data about random foods and vehicles that are stored in the sampleData.json that is being served using [json-server](https://www.npmjs.com/package/json-server) (data obtained from the [Random Data API](https://random-data-api.com/documentation)) :
+Taking [jQuery's ajax method](https://api.jquery.com/jquery.ajax/) as a starting point to understand how we can make requests about data, let's look at an example request to fetch some JSON data about random foods. We'll make a request to the [Random Data API](https://random-data-api.com/documentation) that are stored in the sampleData.json that is being served using [json-server](https://www.npmjs.com/package/json-server) (data obtained from the [Random Data API](https://random-data-api.com/documentation)):
 
 
 ```
 $.ajax({
-  url: 'https://127.0.0.1:3000/foods/6937',
+  url: 'https:random-data-api.com/api/foods/random_food',
   method: 'GET',
   success: function (data) {
     // Here we log the data we get back from Random Data API
@@ -67,7 +74,7 @@ A [Uniform Resource Locator (URL)](https://developer.mozilla.org/en-US/docs/Glos
     - The HOW - this part shows what type of URL we're dealing with. Examples of schemes that you may have seen so far are http, https, file, ftp, git
   - The host (and port) - **mail.google.com**
     - The WHERE - this part tells us where we want to get the resource from
-    - Thie host can be broken down further into subdomain (**mail**) and domain (**google.com**)
+    - The host can be broken down further into subdomain (**mail**) and domain (**google.com**)
     - There are several [default ports](https://url.spec.whatwg.org/#special-scheme) dedicated to specific protocols which may be inferred from the scheme used (they don't always show up!)
       - If the service/application you are interacting with is operating on a port different from the default port of the scheme OR there is no default port for the scheme, you would need to include the port number after the host (for example: http://localhost:3000 - the default port for the http scheme is 80, but the application is running on port 3000)
   - The path - **/mail/u/0/#inbox**
