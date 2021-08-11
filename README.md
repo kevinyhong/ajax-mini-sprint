@@ -175,9 +175,14 @@ jQuery's AJAX method is not the only way that we can make AJAX requests in the b
 ---
 
 #### Collaborators
+[Kevin Ong](https://github.com/kevinyhong)
+Ajax Request Prompts and Testing Refactor
+
+[Fredrick Lou](https://github.com/fredricklou523)
+ReadMe and Directions Editing
 
 [Tom Chandler](https://github.com/tmchandler),
-Ajax Request Prompts and Testing
+Initial Ajax Request Prompts and Testing
 
 [Collin Snyder](https://github.com/Collin-Snyder),
 ReadMe Editing
