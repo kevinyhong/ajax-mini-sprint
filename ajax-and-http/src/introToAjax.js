@@ -1,6 +1,6 @@
 // For the purposes of this exercise, use the function below for your error handling callback in all Ajax calls.
 const FILL_ME_IN = '';
-const REPLACE_ME = () => {};
+const REPLACE_ME = () => { };
 
 const errorLogger = (err) => {
   console.log("Oops! There was an error.");
@@ -18,33 +18,18 @@ const errorLogger = (err) => {
  *
  * Fill in the missing pieces!
  */
-var getAllItems = (collection) => {
-  /* START SOLUTION */
+var getAllItems = (/* FILL_ME_IN */) => {
   $.ajax({
-    type: 'GET',
-    url: `http://127.0.0.1:3000/${collection}`,
+    type: FILL_ME_IN,
+    url: FILL_ME_IN,
     contentType: "application/json",
-    success: getAllItemsCallback,
-    error: errorLogger,
+    success: REPLACE_ME,
+    error: REPLACE_ME,
   });
-  /* ELSE
-    $.ajax({
-      type: FILL_ME_IN,
-      url: FILL_ME_IN,
-      contentType: "application/json",
-      success: REPLACE_ME,
-      error: REPLACE_ME,
-    });
-  
-    END SOLUTION */
 };
 
-var getAllItemsCallback = (data) => {
-  /* START SOLUTION */
-  console.log(JSON.parse(data));
-  /* ELSE
-    // TODO: Log the data for the item that comes back
-    END SOLUTION */
+var getAllItemsCallback = ((/* FILL_ME_IN */) => {
+  // TODO: Log the data for the item that comes back
 };
 
 /* ========== getOneItem ========== /
@@ -56,36 +41,20 @@ var getAllItemsCallback = (data) => {
  * CHALLENGE: Are there any other ways we could provide the parameters for our GET request? 
  * (HINT: this may require you to dig into the documentation for json-server, jQuery.ajax(), and the README)
  */
-var getOneItem = (collection, id) => {
-  /* START SOLUTION */
+var getOneItem = (/* FILL_ME_IN */) => {
   $.ajax({
-    type: 'GET',
-    url: `http://127.0.0.1:3000/${collection}`,
-    contentType: "application/json",
-    data: { id },
-    success: getOneItemCallback,
-    error: errorLogger
+    type: FILL_ME_IN,
+    url: FILL_ME_IN,
+    contentType: FILL_ME_IN,
+    data: FILL_ME_IN,
+    success: REPLACE_ME,
+    error: REPLACE_ME,
   });
-  /* ELSE
-    $.ajax({
-      type: FILL_ME_IN,
-      url: FILL_ME_IN,
-      contentType: FILL_ME_IN,
-      data: FILL_ME_IN,
-      success: REPLACE_ME,
-      error: REPLACE_ME,
-    });
-  
-    END SOLUTION */
 };
 
-var getOneItemCallback = (data) => {
+var getOneItemCallback = (/* FILL_ME_IN */) => {
   /* Model this function like the getAllItemsCallback, taking the differences between the requests into account */
-  /* START SOLUTION */
-  console.log(JSON.parse(data));
-  /* ELSE
-    // TODO: Log the data for the item that comes back
-    END SOLUTION */
+  // TODO: Log the data for the item that comes back
 }
 
 /* Write the rest of the functions below in the style of those above. Do not copy and paste from the above functions!
@@ -108,90 +77,40 @@ HINT: What type of HTTP request should you be using to add an item to our Foods 
 ANOTHER HINT: What is the shape of the data that you're adding to the collection?
 */
 
-var addItem = (collection, item) => {
-  /* START SOLUTION */
+var addItem = (/* FILL_ME_IN */) => {
   $.ajax({
-    type: 'POST',
-    url: `http://127.0.0.1:3000/${collection}`,
-    contentType: "application/json",
-    data: item,
-    success: addItemCallback,
-    error: errorLogger
-  })
-  /* ELSE
-    $.ajax({
-      type: FILL_ME_IN,
-      url: FILL_ME_IN,
-      data: FILL_ME_IN,
-    });
-  
-    END SOLUTION */
+    type: FILL_ME_IN,
+    url: FILL_ME_IN,
+    data: FILL_ME_IN,
+  });
 };
 
-var addItemCallback = (response) => {
-  /* START SOLUTION */
-  console.log(JSON.parse(response));
-  /* ELSE
-    // TODO: Log the confirmation for the item that comes back
-    END SOLUTION */
+var addItemCallback = (/* FILL_ME_IN */) => {
+  // TODO: Log the confirmation for the item that comes back
 };
 
 /* HINT: It looks like you're trying to update an existing item in our Foods collection - what type of request could be used to achieve this? */
 
 /* ========== updateItem ========== */
-var updateItem = (collection, id, item) => {
-  /* START SOLUTION */
-  $.ajax({
-    type: 'PUT',
-    url: `http://127.0.0.1:3000/${collection}/${id}`,
-    contentType: "application/json",
-    data: item,
-    success: updateItemCallback,
-    error: errorLogger
-  });
-  /* ELSE
-    $.ajax({
-      type: FILL_ME_IN,
-      url: FILL_ME_IN,
-      data: FILL_ME_IN,
-    });
-  
-    END SOLUTION */
-  
+var updateItem = (/* FILL_ME_IN */) => {
+  // TODO: Make an AJAX request to update an item in a collection
+  $.ajax(/* FILL_ME_IN */);
 };
 
 /* updateItemCallback() should extract the message from the server's response object */
-var updateItemCallback = (response) => {
-  /* START SOLUTION */
-  console.log(JSON.parse(response).data.success);
-  /* ELSE
-    // TODO: Log the confirmation for the item that was updated
-    END SOLUTION */
+var updateItemCallback = (/* FILL_ME_IN */) => {
+
+  // TODO: Log the confirmation for the item that was updated
 };
 
 /* ========== deleteItem ========== */
-var deleteItem = (collection, id) => {
-  /* START SOLUTION */
-  $.ajax({
-    type: 'DELETE',
-    url: `http://127.0.0.1:3000/${collection}`,
-    contentType: "application/json",
-    data: { id },
-    success: deleteItemCallback,
-    error: errorLogger
-  });
-  /* ELSE
-    // TODO: Make an AJAX request to delete an item in a collection
-  
-    END SOLUTION */
+var deleteItem = (/* FILL_ME_IN */) => {
+  // TODO: Make an AJAX request to delete an item in a collection
+
 };
 
-var deleteItemCallback = (response) => {
-  /* START SOLUTION */
-  console.log(JSON.parse(response).data.success);
-  /* ELSE
-    // TODO: Log the confirmation for the item that was deleted
-    END SOLUTION */
+var deleteItemCallback = (/* FILL_ME_IN */) => {
+  // TODO: Log the confirmation for the item that was deleted
 };
 
 /*
