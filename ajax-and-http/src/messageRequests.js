@@ -38,44 +38,15 @@ not being routed to the correct location.
 
 // HINT: You can reuse the errorLogger callback here if you'd like to or create a custom error logger
 
-var fetchMessagesFromParseServer = function (/* FILL_ME_IN */ callback) {
-  /* START SOLUTION */
+var fetchMessagesFromParseServer = function (/* FILL_ME_IN */) {
+  // TODO: Make an AJAX request to fetch messages from the Message server
   $.ajax({
-    type: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/chatterbox/messages/${CAMPUS}`,
     headers: {
-      "Authorization": API_KEY
-    },
-    success: (data) => {
-      callback(data)
-    },
-    error: errorLogger
-  });
-  /* ELSE
-    // TODO: Make an AJAX request to fetch messages from the Message server
-    $.ajax({
-      headers: {
-        // You'll need to make use of a particular header to make a valid request
-      }
-    })
-    END SOLUTION */
+      // You'll need to make use of a particular header to make a valid request
+    }
+  })
 };
 
-var addMessageToParseServer = function (/* FILL_ME_IN */ message, callback) {
-  /* START SOLUTION */
-  $.ajax({
-    type: 'POST',
-    url: `https://app-hrsei-api.herokuapp.com/api/chatterbox/messages/${CAMPUS}`,
-    data: message,
-    headers: {
-      "Authorization": API_KEY
-    },
-    success: (data) => {
-      callback(data)
-    },
-    error: errorLogger
-  });
-  /* ELSE
-    // TODO: Make an AJAX request to send a message to the Message server
-    END SOLUTION */
+var addMessageToParseServer = function (/* FILL_ME_IN */) {
+  // TODO: Make an AJAX request to send a message to the Message server
 };
