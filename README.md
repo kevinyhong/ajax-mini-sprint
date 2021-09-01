@@ -66,13 +66,16 @@ The example above shows a few of the key components required for our AJAX reques
 
 ## Getting Started
 
+### Environment Setup
 - [ ] `cd` into the `ajax-and-http` folder
 - [ ] Run `npm install` to install any local dependencies
 - [ ] Start the json-server by running `npm start` in the terminal
 - [ ] Open a second terminal window
 - [ ] Run `npm test` to spin up SpecRunner
+
+### Exercises
 - [ ] Fill in the refactored Ajax calls in the Intro To AJAX practice file
-- [ ] Work through the Message Requests file
+- [ ] Work through the Message Requests file (provides a bit of insight into how requests will be made in the Chatterbox Client sprint)
 
 
 ---
